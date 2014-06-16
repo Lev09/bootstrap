@@ -1,0 +1,11 @@
+{
+	"name": "bootstrap_process_manager",
+	"description": "bootstrap process manager and process manager UI",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+    "mkdirp": "*",
+    "optimist": "*",
+    "underscore": "*"
+	}
+}
