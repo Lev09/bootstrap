@@ -9,9 +9,9 @@ var argv = require('optimist')
     .argv;
     
 var processes = [
-	{id: '02', cmd: 'node', params: './fake_starter.js'},
-	{id: '03', cmd: 'node', params: './fake_process_manager.js'},
-	{id: '04', cmd: 'node', params: './fake_process_manager-ui.js'},
+	{id: '02', cmd: 'node', params: ['/home/levon/git/process_starter/server.js']},
+	{id: '03', cmd: 'node', params: ['/home/levon/git/process_manager/server.js']},
+	{id: '04', cmd: 'node', params: ['/home/levon/git/process_manager-ui/app.js']}
 ];
 
 var spawn = require("child_process").spawn;
@@ -25,7 +25,7 @@ var run = function(process) {
     if(error) console.error(error);
     else{
       console.log("folders have been created");
-      fs.writeFile(argv.pidFolder +  process.id + "/" + child.pid, "", function(error) {
+      fs.writeFile(argv.pidFolder + process.id + "/" + child.pid, "", function(error) {
         if (error) console.error(error)
         else console.log("file created!");
       });
@@ -36,9 +36,7 @@ var run = function(process) {
   
 };
 
-_.each(processes, function(process) {
-	run(process);
-});
+_.each(processes, run);
 
 setTimeout(function() {
 	process.exit(0);
