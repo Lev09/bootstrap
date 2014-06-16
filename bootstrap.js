@@ -9,8 +9,8 @@ var argv = require('optimist')
     .argv;
     
 var processes = [
-	{id: '02', cmd: 'node', params: '/home/levon/git/starter.js'},
-	{id: '03', cmd: 'node', params: '/home/levon/git/process_manager.js'}
+	{id: '02', cmd: 'node', params: './fake_starter.js'},
+	{id: '03', cmd: 'node', params: './fake_process_manager.js'}
 ];
 
 var spawn = require("child_process").spawn;
