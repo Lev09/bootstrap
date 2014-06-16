@@ -10,7 +10,8 @@ var argv = require('optimist')
     
 var processes = [
 	{id: '02', cmd: 'node', params: './fake_starter.js'},
-	{id: '03', cmd: 'node', params: './fake_process_manager.js'}
+	{id: '03', cmd: 'node', params: './fake_process_manager.js'},
+	{id: '04', cmd: 'node', params: './fake_process_manager-ui.js'},
 ];
 
 var spawn = require("child_process").spawn;
@@ -42,4 +43,3 @@ _.each(processes, function(process) {
 setTimeout(function() {
 	process.exit(0);
 }, 10000);
-
