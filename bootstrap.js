@@ -1,18 +1,29 @@
 var fs = require("fs");
 var mkdirp = require("mkdirp");
 var _ = require('underscore'); 
+var zmq = require('zmq');
 
 var argv = require('optimist')
     .default({
-      pidFolder: "/tmp/process_manager/" 
+    	connect: "tcp://localhost:5050",
+      pidFolder: "/tmp/process_manager/"
     })
     .argv;
-    
-var processes = [
-	{id: '02', cmd: 'node', params: ['/home/levon/git/process_starter/server.js']},
-	{id: '03', cmd: 'node', params: ['/home/levon/git/process_manager/server.js']},
-	{id: '04', cmd: 'node', params: ['/home/levon/git/process_manager-ui/app.js']}
-];
+
+var requester = zmq.socket('asyncreq');
+requester.connect(argv.connect);
+
+requester.send(JSON.stringify({type: "get"}), function(processes) {
+  processes = JSON.parse(processes);
+  _.each(processes, function(process) {
+  	if(process.auto) {
+  		run(process);
+  	}
+  });
+  setTimeout(function() {
+		process.exit(1);
+  }, 5000);
+});
 
 var spawn = require("child_process").spawn;
 
@@ -36,8 +47,8 @@ var run = function(process) {
   
 };
 
-_.each(processes, run);
-
-setTimeout(function() {
-	process.exit(0);
-}, 10000);
+run({
+	id: '03',
+	cmd: 'node',
+	params: ['fake_process_manager.js']
+});

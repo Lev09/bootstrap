@@ -6,6 +6,7 @@
 	"dependencies": {
     "mkdirp": "*",
     "optimist": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "zmq": "onicollet/zmq"
 	}
 }

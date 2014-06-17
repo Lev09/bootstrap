@@ -1,1 +1,1 @@
-console.log(proces manager started);
+console.log('proces manager started');
