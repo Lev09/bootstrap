@@ -34,7 +34,7 @@ var run = function(process) {
 run({
 	id: '1',
 	cmd: 'node',
-	params: ['/home/skarslyan/git/processProject/process_manager/server.js']
+	params: ['/home/levon/git/process_manager/server.js']
 });
 
 var requester = zmq.socket('asyncreq');
