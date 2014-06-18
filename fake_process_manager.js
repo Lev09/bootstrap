@@ -21,7 +21,7 @@ var processList = [
 ];
 
 responder.on('message', function(message, response) {
-  response.send(JSON.stringify(processList));
+  response.send(processList);
 });
 
 console.log('process manager runed');
